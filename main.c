@@ -32,43 +32,50 @@ static	int	w_counter(char *src, char delimiter)
 	return (wc);
 }
 
-static	int	l_counter(int fd)
+
+static	void	read_map(t_data *data, char *f_name)
 {
 	char	*line;
-	int		l_count;
+	int		fd;
 
+	fd = open(f_name, O_RDONLY);
+	if (fd == -1)
+		exit(EXIT_FAILURE);
 	line = get_next_line(fd);
-	l_count = 0;
-	while (line != NULL)
-	{
-		free(line);
-		line = get_next_line(fd);
-		l_count++;
-	}
-	return (l_count);
+	data->map = (t_map *) malloc(sizeof(t_map));
+	if (!data->map)
+		exit(EXIT_FAILURE);
+	data->map->w_count = w_counter(line, ' ');
+	data->map->l_count = 0;
+	close(fd);
 }
 
-static	void	read_map(char	*f_name, t_data *data, int	*fd)
+static void p_pixel(t_pixel *pxl)
 {
-	*fd = open(f_name, O_RDONLY);
-	if (*fd == -1)
-		return ;
-	data->w_count = w_counter(get_next_line(*fd), ' ');
-	data->l_count = l_counter(*fd);
-	close(*fd);
+	t_pixel *tmp;
+
+	tmp = pxl;
+	while (tmp)
+	{
+		printf("%d\t %d \n",tmp->z, tmp->color);
+		tmp = tmp->next;
+	}
 }
 
 int	main(int ac, char **av)
 {
-	int		fd;
-
 	t_data	data;
-	if (ac != 2)
-		exit(-1);
-	read_map(av[1], &data, &fd);
-	init_map(&data,av[1]);
+	t_pixel *pixel_lst;
 
+	if (ac != 2)
+		exit(EXIT_FAILURE);
+	pixel_lst = NULL;
+	read_map(&data, av[1]);
+	init_map(&data, av[1], &pixel_lst);
+	p_pixel(pixel_lst);
+	die("Done\n",EXIT_SUCCESS,&pixel_lst);
 	return (0);
+	
 }
 
 

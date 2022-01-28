@@ -23,10 +23,14 @@ void	ft_putstr(char *s);
 char	*get_next_line(int fd);
 char	**ft_split(char const *s, char c);
 int     ft_atoi(char *str);
-void    init_map(t_data *data, char *f_name);
+void    init_map(t_data *data, char *f_name, t_pixel **pixel_lst);
 int     ft_strlen(const char *s);
 char    *ft_substr(char const *s, unsigned int start, size_t len);
 t_pixel *new_pixel(int x,int y, int z, int color);
 int	    add_pixel(t_pixel **head, t_pixel *new);
+char    *ft_itoa(int n);
+void    die(char *msg, int code, t_pixel **lst);
+char    *ft_strchr(const char *s, char c);
+unsigned int    s_hextoi(char *hex);
 
 # endif

@@ -7,10 +7,10 @@ t_pixel *new_pixel(int x,int y, int z, int color)
 	new_p = (t_pixel *)malloc(sizeof(t_pixel));
 	if (!new_p)
 		return (NULL);
-	new_p->x = 0;
-	new_p->y = 0;
-	new_p->z = 0;
-	new_p->color = 0;
+	new_p->x = x;
+	new_p->y = y;
+	new_p->z = z;
+	new_p->color = color;
 	new_p->next = NULL;
 	return (new_p);
 }
