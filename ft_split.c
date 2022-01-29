@@ -1,91 +1,25 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/13 01:53:49 by iraqi             #+#    #+#             */
-/*   Updated: 2022/01/12 02:47:31 by iraqi            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "fdf.h"
 
-static int	w_counter(char const *src, char delimiter)
+t_pixel	*split_delim(char *str, char d, t_cord *cord)
 {
-	int	i;
-	int	wc;
-
-	i = 0;
-	wc = 0;
-	if (src && !delimiter)
-		return (1);
-	if (!src)
-		return (wc);
-	if (src[i] != delimiter)
-		wc++;
-	while (src[i] != '\0')
-	{
-		if (src[i] != delimiter && src[i - 1] == delimiter)
-			wc++;
-		i++;
-	}
-	return (wc);
-}
-
-static int	ft_free(char **res, int row)
-{
-	if (res[row] == NULL)
-	{
-		while (res[--row])
-			free(res[row]);
-		free(res);
-		return (1);
-	}
-	return (0);
-}
-
-static char	**w_creator(char **resu, const char *s, char delimiter)
-{
-	int		i;
-	int		start;
+	t_pixel	*new;
+	int		beg;
 	int		end;
-	int		row;
 
-	row = 0;
-	i = 0;
-	start = 0;
+	if (!str)
+		return (NULL);
+	beg = 0;
 	end = 0;
-	while (s[i] != '\0')
+	new = NULL;
+	while (str[end])
 	{
-		while (s[i] == delimiter && s[i] != '\0')
-			i++;
-		start = i;
-		while (s[i] != delimiter && s[i] != '\0')
-			i++;
-		end = i;
-		if (start >= end)
-			break ;
-		resu[row] = ft_substr(s, start, (end - start));
-		if (ft_free(resu, row++) == 1)
-			return (NULL);
+		while (str[end] == d)
+			end = (beg++, end + 1);
+		while (str[end] && str[end] != d)
+			end++;
+		if ((end > beg) && add_pixel(&new, str + beg, cord, end - beg))
+			return (pixels_clear(&new), NULL);
+		beg = end;
 	}
-	resu[row] = NULL;
-	return (resu);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		wc;
-	char	**res;
-
-	if (!s)
-		return (NULL);
-	wc = w_counter(s, c);
-	res = (char **) malloc (sizeof (char *) * (wc + 1));
-	if (!res)
-		return (NULL);
-	res = w_creator(res, s, c);
-	return (res);
+	return (new);
 }

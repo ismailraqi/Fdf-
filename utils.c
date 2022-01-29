@@ -1,28 +1,43 @@
 #include "fdf.h"
 
-int     check_for_color()
+
+int	contains(char *str, char c)
 {
-    
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == c)
+			return (i);
+	return (-1);
 }
 
-char *ft_strchr(const char *s, char c)
+int	get_hight_n_color(t_pixel *pixel, char *str, int size, char *base)
 {
-    size_t i;
-    char *res;
-    size_t len;
-    
+	int	i;
+	int	t;
 
-    res = (char *)s;
-    len = ft_strlen(res);
-    if (c == '\0')
-        return (res + len);
-    i = 0;
-    while (i < len)
-    {
-        if (s[i] == c)
-            return (res + i);
-        i++;
-    }
-    return (NULL);
+	if (!str)
+		return (-1);
+	i = 0;
+	t = -1 * (str[i] == '-') + (str[i] == '+');
+	i += (t != 0);
+	t += (t == 0);
+	while (str[i] >= '0' && str[i] <= '9')
+		pixel->z = (i++, 10 * pixel->z + (str[i - 1] - '0'));
+	pixel->z *= t;
+	if (i == size)
+		return (0);
+	i += 3;
+	while (i < size)
+	{
+		t = (str[i] == 'A') * 10 + (str[i] == 'B') * 11 + (str[i] == 'C') * 12;
+		t = (str[i] == 'D') * 13 + (str[i] == 'E') * 14 + (str[i] == 'F') * 15;
+		if (!t)
+			t = contains(base, str[i]);
+		if (t < 0)
+			return (0);
+		pixel->color = (i++, (pixel->color << 4) | t);
+	}
+	return (0);
 }
-

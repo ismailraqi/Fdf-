@@ -16,21 +16,35 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+#include  <stdio.h>
 # include "structs.h"
-#include <stdio.h>
 
-void	ft_putstr(char *s);
-char	*get_next_line(int fd);
-char	**ft_split(char const *s, char c);
-int     ft_atoi(char *str);
-void    init_map(t_data *data, char *f_name, t_pixel **pixel_lst);
-int     ft_strlen(const char *s);
-char    *ft_substr(char const *s, unsigned int start, size_t len);
+//      MAP HANDLING        //
+
+t_pixel	*get_list(char *fname);
+t_pixel	*split_delim(char *str, char d, t_cord *cord);
+int	    get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
+
+//      MAP HANDLING END    //
+
+
+
+//      LIST HANDLING        //
+
 t_pixel *new_pixel(int x,int y, int z, int color);
-int	    add_pixel(t_pixel **head, t_pixel *new);
-char    *ft_itoa(int n);
+int	    add_pixel(t_pixel **head, char *str, t_cord *cord, int size);
+void    pixels_clear(t_pixel **head);
+void	cat_lst(t_pixel **mother, t_pixel *son);
+
+//      LIST HANDLING END     //
+
+
+
+//      UTILS HANDLING        //
+
+int     ft_strlen(const char *s);
 void    die(char *msg, int code, t_pixel **lst);
-char    *ft_strchr(const char *s, char c);
-unsigned int    s_hextoi(char *hex);
+
+//      UTILS HANDLING END    //
 
 # endif

@@ -1,25 +1,28 @@
 #ifndef STRUCT_H
 #define STRUCT_H
 
-typedef struct s_pixel
+typedef struct 	s_pixel
 {
 	int				x;
 	int				y;
 	int				z;
 	int				color;
+	int				count;
 	struct s_pixel	*next;
-}	t_pixel;
+}				t_pixel;
 
-typedef	struct s_map
+typedef struct	s_cord
 {
-	int		w_count;
-	int		l_count;
-}	t_map;
+	int	x;
+	int	y;
+	int	num;
+}				t_cord;
 
 typedef	struct s_data
 {
 	t_pixel	*curr_pixel;
-	t_map	*map;
+	char	*line;
+	int		fd;
 	int		w_count;
 	int		l_count;
 	int		win_x;

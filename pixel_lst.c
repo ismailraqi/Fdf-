@@ -15,19 +15,28 @@ t_pixel *new_pixel(int x,int y, int z, int color)
 	return (new_p);
 }
 
-int	add_pixel(t_pixel **head, t_pixel *new)
+int	add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 {
-	t_pixel	*current;
+	t_pixel	*new;
+	t_pixel	*curr;
 
-	if (!head || !new) 
+	new = (t_pixel *)malloc(sizeof(t_pixel));
+	if (!new)
 		return (-1);
+	new->z = 0;
+	new->color = 0;
+	new->x = cord->x++;
+	new->y = cord->y;
+	new->next = NULL;
+	if (get_hight_n_color(new, str, size, "01234567890abcdef"))
+		return (free(new), -1);
+	new->count = cord->num++;
 	if (!*head)
 		return (*head = new, 0);
-	current = *head;
-	while (current->next)
-		current = current->next;
-	current->next = new;
-	return (0);
+	curr = *head;
+	while (curr->next)
+		curr = curr->next;
+	return (curr->next = new, 0);
 }
 
 void    pixels_clear(t_pixel **head)
@@ -44,6 +53,21 @@ void    pixels_clear(t_pixel **head)
         current = next;
     }
     *head = NULL;
+}
+
+void	cat_lst(t_pixel **mother, t_pixel *son)
+{
+	t_pixel	*curr;
+
+	if (*mother)
+	{
+		curr = *mother;
+		while (curr->next)
+			curr = curr->next;
+		curr->next = son;
+	}
+	else
+		*mother = son;
 }
 
 void    die(char *msg, int code, t_pixel **lst)
