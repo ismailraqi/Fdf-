@@ -14,22 +14,37 @@
 
 static	void	p_pixels(t_pixel *head)
 {
-	while (head)
-		head = (printf("%3d",head->z), head->next);
+	while (head->next)
+		head = (printf("%3d %d\n",head->z,head->y), head->next);
 }
 
 int	main(int ac, char **av)
 {
 	t_pixel	*pixels;
+	t_map	*map;
+	t_data	*data;
 
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	pixels = get_list(av[1]);
-	p_pixels(pixels);
-	pixels_clear(&pixels);
+	map = map_initializer(pixels);
+	map_filler(&pixels, map);
+	data = mlx_initializer(map);
+	// int i = 0;
+	// int z = 18;
+	// while (i <= map->map_size)
+	// {
+	// 	printf("%3d ",map->map_cordinates[i]);
+	// 	if(i == 18 || i == z)
+	// 	{
+	// 		printf("\n");
+	// 		z += 19;
+	// 	}
+	// 	i++;
+	// }
+
+
 	die("Done\n",EXIT_SUCCESS,&pixels);
 	return (0);
 	
 }
-
-
