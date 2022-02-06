@@ -70,19 +70,6 @@ void	cat_lst(t_pixel **mother, t_pixel *son)
 		*mother = son;
 }
 
-t_pixel	*ft_lstlast(t_pixel *lst)
-{
-	t_pixel	*tmp;
-
-	tmp = lst;
-	while (tmp != NULL)
-	{
-		if (tmp->next == NULL)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (tmp);
-}
 
 void    die(char *msg, int code, t_pixel **lst)
 {

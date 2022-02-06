@@ -40,4 +40,10 @@ typedef struct		s_data
 	int				zoom;
 }					t_data;
 
+typedef struct 		s_lines
+{
+	t_pixel			*line;
+	struct	s_lines	*next;
+}					t_lines;
+
 #endif 

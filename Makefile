@@ -10,20 +10,25 @@ SRC   = ft_split.c\
 		utils.c\
 		hooks.c\
 		initializer.c\
-		drawer.c
+		drawer.c\
+		lines_lst.c
 
 OBJ = $(SRC:.c=.o)
 
-LIBXL = -lmlx -lXext -lX11 
+LIBL = -lmlx -lXext -lX11 
+LIBM = -lmlx -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
 	@echo "Creating LINUX executable $(NAME) ..."
-	@gcc -o $(NAME) $(OBJ) $(LIBXL)
+	@gcc -o $(NAME) $(OBJ) $(LIBL)
 
 %.o: %.c 
 	@gcc $(CFLAGS) -c $<
+
+mac	: $(OBJ)
+	gcc -o $(NAME) $(OBJ) $(LIBM)
 
 clean :
 	@echo "Removing object files ..."

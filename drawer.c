@@ -38,18 +38,24 @@ void    draw_line(t_pixel p_1, t_pixel p_2, t_data *data)
     }
 }
 
-void    draw(t_pixel *pixels, t_data *data)
+void    draw(t_pixel **lines_map, t_data *data)
 {
-    t_pixel *curr;
-    t_pixel *next;
+    int y;
+    int x;
 
-    curr = pixels;
-    next = curr->next;
-    while(curr->next)
+    y = 0;
+    while (y < data->map->height - 1)
     {
-        draw_line(*curr, *next, data);
-        curr = next;
-        next = next->next;
+        x = 0;
+        while (x < data->map->width - 1)
+        {
+            draw_line(lines_map[y][x], lines_map[y][x+1],data);
+            draw_line(lines_map[y][x], lines_map[y+1][x],data);
+            //printf("point 1 x = %d | y = %d \n",lines_map[y][x].x,lines_map[y][x].y);
+            x++;
+        }
+        y++;
     }
+    //draw_line(lines_map[1][4], lines_map[1][4],data);
     mlx_put_image_to_window(data->mlx,data->win,data->img,0,0);
 }
