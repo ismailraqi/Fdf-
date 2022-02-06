@@ -16,7 +16,7 @@ SRC   = ft_split.c\
 OBJ = $(SRC:.c=.o)
 
 LIBL = -lmlx -lXext -lX11 
-LIBM = -lmlx -framework OpenGL -framework AppKit
+LIBM = -lmlx -lm -framework OpenGL -framework AppKit
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 01:57:43 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/06 15:40:15 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/02/06 18:47:09 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	main(int ac, char **av)
 		
 	// }
 	
-	//draw(lines_map,data);
-	//printf("%d %d %d \n", data->map->map_size,data->map->width,data->map->height);
-	//mlx_loop(data->mlx);
+	draw(lines_map,data);
+	printf("%d %d %d \n", data->map->map_size,data->map->width,data->map->height);
+	mlx_loop(data->mlx);
 	// int i = 0;
 	// int z = 18;
 	// while (i <= map->map_size)
