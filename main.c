@@ -23,13 +23,16 @@ int	main(int ac, char **av)
 	t_pixel	*pixels;
 	t_map	*map;
 	t_data	*data;
+	t_pixel	*last;
 
+	last = NULL;
 	if (ac != 2)
 		exit(EXIT_FAILURE);
-	pixels = get_list(av[1]);
-	map = map_initializer(pixels);
-	map_filler(&pixels, map);
-	data = mlx_initializer(map);
+	pixels = get_list(av[1],&last);
+	printf("%d %d %d \n", last->count,last->y,last->x);
+	data = mlx_initializer();
+	draw(pixels,data);
+	mlx_loop(data->mlx);
 	// int i = 0;
 	// int z = 18;
 	// while (i <= map->map_size)
@@ -43,8 +46,8 @@ int	main(int ac, char **av)
 	// 	i++;
 	// }
 
-
-	die("Done\n",EXIT_SUCCESS,&pixels);
+	// DRAW ALGO HERE //
+	//die("Done\n",EXIT_SUCCESS,&pixels);
 	return (0);
 	
 }

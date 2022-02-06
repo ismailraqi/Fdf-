@@ -21,10 +21,14 @@
 # include "structs.h"
 # include "keycode.h"
 
+
+# define WIDTH  1000
+# define HEIGHT 1000 
+void    draw(t_pixel *pixels, t_data *data);
 //      FILE HANDLING        //
 
-t_pixel	*get_list(char *fname);
-t_pixel	*split_delim(char *str, char d, t_cord *cord);
+t_pixel	*get_list(char *fname, t_pixel **last);
+t_pixel	*split_delim(char *str, char d, t_cord *cord, t_pixel **last);
 int     get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
 
 //      FILE HANDLING END    //
@@ -32,7 +36,7 @@ int     get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
 
 //      INITIALIZING PROTOTYPES        //
 
-t_data  *mlx_initializer(t_map *map);
+t_data  *mlx_initializer(void);
 
 //      INITIALIZING PROTOTYPES  END      //
 
@@ -40,7 +44,7 @@ t_data  *mlx_initializer(t_map *map);
 //      LIST HANDLING        //
 
 t_pixel *new_pixel(int x,int y, int z, int color);
-int	    add_pixel(t_pixel **head, char *str, t_cord *cord, int size);
+t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size);
 void    pixels_clear(t_pixel **head);
 void    cat_lst(t_pixel **mother, t_pixel *son);
 t_pixel	*ft_lstlast(t_pixel *lst);
@@ -50,7 +54,6 @@ t_pixel	*ft_lstlast(t_pixel *lst);
 //      MAP HANDLERS            //
 
 t_map   *map_initializer(t_pixel *head);
-void	map_filler(t_pixel **pixels, t_map *map);
 
 //      MAP HANDLERS END        //
 

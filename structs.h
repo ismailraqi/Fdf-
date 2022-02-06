@@ -15,15 +15,11 @@ typedef struct		s_cord
 {
 	int				x;
 	int				y;
-	int				z;
 	int				num;
-	int				color;
 }					t_cord;
 
 typedef struct		s_map
 {
-	int				*map_cordinates;
-	int				*map_colors;
 	int				map_size;
 	int				height;
 	int				width;
@@ -41,6 +37,7 @@ typedef struct		s_data
 	int				size_line;
 	int				endian;
 	t_map			*map;
+	int				zoom;
 }					t_data;
 
 #endif 

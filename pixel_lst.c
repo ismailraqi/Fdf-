@@ -15,28 +15,28 @@ t_pixel *new_pixel(int x,int y, int z, int color)
 	return (new_p);
 }
 
-int	add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
+t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 {
 	t_pixel	*new;
 	t_pixel	*curr;
 
 	new = (t_pixel *)malloc(sizeof(t_pixel));
 	if (!new)
-		return (-1);
+		return (NULL);
 	new->z = 0;
 	new->color = 0;
 	new->x = cord->x++;
 	new->y = cord->y;
 	new->next = NULL;
 	if (get_hight_n_color(new, str, size, "01234567890abcdef"))
-		return (free(new), -1);
+		return (free(new), NULL);
 	new->count = cord->num++;
 	if (!*head)
-		return (*head = new, 0);
+		return (*head = new, new);
 	curr = *head;
 	while (curr->next)
 		curr = curr->next;
-	return (curr->next = new, 0);
+	return (curr->next = new, new);
 }
 
 void    pixels_clear(t_pixel **head)
