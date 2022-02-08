@@ -19,8 +19,8 @@ t_data  *mlx_initializer(t_map *map)
 
     data = (t_data *) malloc(sizeof(t_data));
     data->mlx = mlx_init();
-    data->win = mlx_new_window(data->mlx, 1000, 1000, "FDF");
-    data->img = mlx_new_image(data->mlx, 1000, 1000);
+    data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
+    data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
     data->data_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
     data->map = map;
     return (data);

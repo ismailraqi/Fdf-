@@ -1,4 +1,5 @@
 # include "fdf.h"
+
 int Sign(int dxy)
 {
     if (dxy<0) 
@@ -8,21 +9,24 @@ int Sign(int dxy)
     else 
         return (0);
 }
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
-	dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+    if (x < WIDTH && y < HEIGHT)
+    {
+        dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
+        *(unsigned int*)dst = color;
+    }
 }
 
 void    draw_line(t_pixel p_1, t_pixel p_2, t_data *data)
 {
     //int k,steps,p0,p,dx,dy,x,y;
-    p_1.x *= 20;
-    p_1.y *= 20;
-    p_2.x *= 20;
-    p_2.y *= 20;
+    p_1.x *= 5;
+    p_1.y *= 5;
+    p_2.x *= 5;
+    p_2.y *= 5;
     // dx=abs(p_2.x-p_1.x);
     // dy=abs(p_2.y-p_1.y);
     // x=p_1.x;
@@ -104,16 +108,19 @@ void    draw(t_pixel **lines_map, t_data *data)
     int x;
 
     y = 0;
-    while (y < data->map->height - 1)
+    while (y <= data->map->height - 1)
     {
         x = 0;
-        while (x < data->map->width - 1)
+        while (x <= data->map->width - 1)
         {
-            draw_line(lines_map[y][x], lines_map[y][x+1],data);
-            draw_line(lines_map[y][x], lines_map[y+1][x],data);
+            if (x != data->map->width - 1)
+                draw_line(lines_map[y][x], lines_map[y][x+1],data);
+            if (y != data->map->height - 1)
+                draw_line(lines_map[y][x], lines_map[y+1][x],data);
             //printf("point 1 x = %d | y = %d \n",lines_map[y][x].x,lines_map[y][x].y);
             x++;
         }
+        printf("y == %d\n", y);
         y++;
     }
     //draw_line(lines_map[1][4], lines_map[1][4],data);
