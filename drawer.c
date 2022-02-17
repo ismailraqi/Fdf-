@@ -11,90 +11,67 @@ int Sign(int dxy)
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
+    if (x < WIDTH && y < HEIGHT)
+    {
+	    dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
+	    *(unsigned int*)dst = color;
+    }
+}
 
-	dst = data->data_addr + (y * data->size_line + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+t_draw  *init_draw(t_pixel p1, t_pixel p2)
+{
+    t_draw  *data;
+
+    data = (t_draw *) malloc(sizeof(t_draw));
+    if (!data)
+        return (NULL);
+    data->delta.x = p2.x - p1.x;
+    data->delta.y = p2.y - p1.y;
+    data->sign.x = Sign(data->delta.x);
+    data->sign.y = Sign(data->delta.y);
+    data->current.x = p1.x;
+    data->current.y = p1.y;
+    data->d = MAX(data->delta.x, data->delta.y);
+    data->r = data->d / 2;
+    return (data);
 }
 
 void    draw_line(t_pixel p_1, t_pixel p_2, t_data *data)
 {
-    //int k,steps,p0,p,dx,dy,x,y;
     p_1.x *= 20;
     p_1.y *= 20;
     p_2.x *= 20;
     p_2.y *= 20;
-    // dx=abs(p_2.x-p_1.x);
-    // dy=abs(p_2.y-p_1.y);
-    // x=p_1.x;
-    // y=p_1.y;
-    // if(dx>dy)
-    //     steps=dx;
-    // else
-    //     steps=dy;
-    // my_mlx_pixel_put(data, x, y,0xEC4B27);
-    // p0=2*dy-dx;
-    // p=p0;
-    // for(k=0;k<steps;k++)
-    // {
-    //     x=x+1;
-    //     if(p<0)
-	//         p=p+(2*dy);
-    //     else
-    //     {
-	//         y=y+1;
-	//         p=p+2*dy-2*dx;
-	//     }
-    //     y=y+1;
-	//     p=p+2*dy-2*dx;
-    //     my_mlx_pixel_put(data, x, y,0xEC4B27);
-    // }
-    int Dx = p_2.x - p_1.x;
-    int Dy = p_2.y - p_1.y;
 
-    //# Increments
-    int Sx = Sign(Dx); 
-    int Sy = Sign(Dy);
+    t_draw  *c_data;
+    int     i;
 
-    //# Segment length
-    Dx = abs(Dx); 
-    Dy = abs(Dy); 
-    int D = MAX(Dx, Dy);
-
-    //# Initial remainder
-    double R = D / 2;
-
-    int X = p_1.x;
-    int Y = p_1.y;
-    if(Dx > Dy)
-    {   
-        //# Main loop
-        for(int I=0; I<D; I++)
-        {   
-            my_mlx_pixel_put(data, X, Y,0xEC4B27);
-            //# Update (X, Y) and R
-            X+= Sx; R+= Dy; //# Lateral move
-            if (R >= Dx)
-            {
-                Y+= Sy; 
-                R-= Dx; //# Diagonal move
-            }
+    c_data = init_draw(p_1, p_2);
+    if (c_data->delta.x > c_data->delta.y)
+    {
+        i = 0;
+        while (i < c_data->d)
+        {
+            my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, 0xEC4B27);
+            c_data->current.x += c_data->sign.x;
+            c_data->r += c_data->delta.y;
+            if (c_data->r >= c_data->delta.x)
+                (c_data->current.y += c_data->sign.y, c_data->r -= c_data->delta.x);
+            i++;
         }
-    }
-    else
-    {   
-        //# Main loop
-        for(int I=0; I<D; I++)
-        {    
-            my_mlx_pixel_put(data, X, Y,0xEC4B27);
-            //# Update (X, Y) and R
-            Y+= Sy; 
-            R+= Dx; //# Lateral move
-            if(R >= Dy)
-            {    
-                X+= Sx; 
-                R-= Dy; //# Diagonal move
-            }
+    } 
+    else {
+        i = 0;
+        while (i < c_data->d)
+        {
+            my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, 0xEC4B27);
+            c_data->current.y += c_data->sign.y;
+            c_data->r += c_data->delta.x;
+            if (c_data->r >= c_data->delta.y)
+                (c_data->current.x += c_data->sign.x,c_data->r -= c_data->delta.y);
+            i++;
         }
+
     }
 }
 
@@ -104,18 +81,19 @@ void    draw(t_pixel **lines_map, t_data *data)
     int x;
 
     y = 0;
-    while (y < data->map->height - 1)
+    while (y <= data->map->height - 1)
     {
         x = 0;
-        while (x < data->map->width - 1)
+        while (x <= data->map->width - 1)
         {
-            draw_line(lines_map[y][x], lines_map[y][x+1],data);
-            draw_line(lines_map[y][x], lines_map[y+1][x],data);
-            //printf("point 1 x = %d | y = %d \n",lines_map[y][x].x,lines_map[y][x].y);
+            if (x != data->map->width - 1)
+                draw_line(lines_map[y][x], lines_map[y][x+1],data);
+            if (y != data->map->height - 1)
+                draw_line(lines_map[y][x], lines_map[y+1][x],data);
             x++;
         }
+        write(2,"a",2);
         y++;
     }
-    //draw_line(lines_map[1][4], lines_map[1][4],data);
     mlx_put_image_to_window(data->mlx,data->win,data->img,0,0);
 }

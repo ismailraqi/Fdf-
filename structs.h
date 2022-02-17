@@ -46,4 +46,14 @@ typedef struct 		s_lines
 	struct	s_lines	*next;
 }					t_lines;
 
+typedef struct 		s_draw
+{
+	t_cord			delta;
+	t_cord			sign;
+	t_cord			current;
+	int				d;
+	double			r;	
+}					t_draw;
+
+
 #endif 

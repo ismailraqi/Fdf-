@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/06 19:22:27 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/02/17 18:12:57 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int     get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
 
 //      INITIALIZING PROTOTYPES        //
 
-t_data  *mlx_initializer(t_map *map);
+t_data  *mlx_initializer();
 
 //      INITIALIZING PROTOTYPES  END      //
 
