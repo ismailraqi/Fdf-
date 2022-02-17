@@ -1,4 +1,5 @@
 # include "fdf.h"
+
 int Sign(int dxy)
 {
     if (dxy<0) 
@@ -8,6 +9,7 @@ int Sign(int dxy)
     else 
         return (0);
 }
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
