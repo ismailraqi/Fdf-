@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/17 18:12:57 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/02/23 04:11:04 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,8 @@ int		key_hook(int keycode, t_data *data);
 t_lines    *new_line(t_pixel *f_pixel);
 void    cat_lines(t_lines **mother, t_lines *son);
 t_pixel     **lines_to_map(t_lines *lines, int size);
+t_pixel wrapper(t_pixel p);
+void	draw_line(t_pixel f, t_pixel s, t_data *fdf);
+
 
 # endif

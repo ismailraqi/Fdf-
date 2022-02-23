@@ -10,7 +10,7 @@ SRC   = ft_split.c\
 		utils.c\
 		hooks.c\
 		initializer.c\
-		drawer.c\
+		drawing.c\
 		lines_lst.c
 
 OBJ = $(SRC:.c=.o)

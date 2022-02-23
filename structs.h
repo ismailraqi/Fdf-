@@ -37,6 +37,8 @@ typedef struct		s_data
 	int				size_line;
 	int				endian;
 	t_map			*map;
+	t_pixel			**lines_map;
+
 	int				zoom;
 }					t_data;
 

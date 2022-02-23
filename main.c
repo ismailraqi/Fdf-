@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 01:57:43 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/17 18:15:11 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/02/21 20:47:39 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int ac, char **av)
 	t_data	*data;
 	t_pixel	*last;
 	t_lines *lines;
-	t_pixel	**lines_map;
 
 	last = NULL;
 	if (ac != 2)
@@ -32,8 +31,8 @@ int	main(int ac, char **av)
 	lines = get_list(av[1],&last);
 	data = mlx_initializer();
 	data->map = map_initializer(last);
-	lines_map = lines_to_map(lines, data->map->height + 1);
-	draw(lines_map,data);
+	data->lines_map = lines_to_map(lines, data->map->height + 1);
+	draw(data->lines_map,data);
 	mlx_loop(data->mlx);
 	//die("Done\n",EXIT_SUCCESS,&pixels);
 	return (0);
