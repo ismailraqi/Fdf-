@@ -52,9 +52,8 @@ typedef struct 		s_draw
 {
 	t_cord			delta;
 	t_cord			sign;
-	t_cord			current;
-	int				d;
-	double			r;	
+	t_pixel			current;
+	int				error[2];
 }					t_draw;
 
 

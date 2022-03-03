@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/23 04:11:04 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/03/03 12:02:04 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@
 # include "structs.h"
 # include "keycode.h"
 
-# define MAX(a,b) (((a)>(b))?(a):(b))
 # define WIDTH  1000
 # define HEIGHT 1000 
 void    draw(t_pixel **lines_map, t_data *data);
+
 //      FILE HANDLING        //
 
 t_lines	*get_list(char *fname,t_pixel **last);
