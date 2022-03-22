@@ -39,32 +39,42 @@ static int sign_test(int a, int b)
     return (-1);
 }
 
-t_draw *init_draw(t_pixel p1, t_pixel p2)
+t_draw *init_draw(t_pixel *p1, t_pixel *p2, t_data *f_data)
 {
     t_draw *data;
 
     data = (t_draw *)malloc(sizeof(t_draw));
     if (!data)
         return (NULL);
-    data->delta.x = abs(p2.x - p1.x);
-    data->delta.y = abs(p2.y - p1.y);
-    data->sign.x = sign_test(p1.x, p2.x);
-    data->sign.y = sign_test(p1.y, p2.y);
-    data->current = p1;
+    p1->x *= 2;
+    p1->y *= 2;
+    p2->x *= 2;
+    p2->y *= 2;
+    iso(&p1->x, &p1->y, p1->z);
+    iso(&p2->x, &p2->y, p2->z);
+    p1->x += 200;
+    p1->y += 200;
+    p2->x += 200;
+    p2->y += 200;
+    data->delta.x = abs(p2->x - p1->x);
+    data->delta.y = abs(p2->y - p1->y);
+    data->sign.x = sign_test(p1->x, p2->x);
+    data->sign.y = sign_test(p1->y, p2->y);
+    data->current = *p1;
     data->error[0] = data->delta.x - data->delta.y;
     return (data);
 }
 
 void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 {
-    t_draw *c_data;
+    t_draw  *c_data;
+    int     c;
 
-    int c;
-    c_data = init_draw(p1, p2);
+    c_data = init_draw(&p1, &p2, data);
     if (p1.z != 0 || p2.z != 0)
         c = 0x00604511;
     else 
-        c = 0x009045ff;
+        c = 0x00ffffff;
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
 		my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, c);

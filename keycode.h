@@ -3,7 +3,7 @@
 
 
 # define S_KEY 		1
-# define ESC_KEY 	65307
+# define ESC_KEY 	53
 # define C_KEY		8
 # define F_KEY		3
 

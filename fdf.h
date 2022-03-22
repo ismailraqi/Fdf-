@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/03/03 12:02:04 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/03/12 02:14:22 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int     get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
 //      INITIALIZING PROTOTYPES        //
 
 t_data  *mlx_initializer();
+t_map   *map_initializer(t_pixel *last);
 
 //      INITIALIZING PROTOTYPES  END      //
 
@@ -48,15 +49,9 @@ t_pixel *new_pixel(int x,int y, int z, int color);
 t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size);
 void    pixels_clear(t_pixel **head);
 void    cat_lst(t_pixel **mother, t_pixel *son);
-t_pixel	*ft_lstlast(t_pixel *lst);
 
 //      LIST HANDLING END     //
 
-//      MAP HANDLERS            //
-
-t_map   *map_initializer(t_pixel *last);
-
-//      MAP HANDLERS END        //
 
 
 //      UTILS PROTOTYPES        //
@@ -75,9 +70,10 @@ int		key_hook(int keycode, t_data *data);
 //      HOOKS PROTOTYPES  END   //
 
 
-/// UTILS
+//      UTILS
+
 t_lines    *new_line(t_pixel *f_pixel);
-void    cat_lines(t_lines **mother, t_lines *son);
+void        cat_lines(t_lines **mother, t_lines *son);
 t_pixel     **lines_to_map(t_lines *lines, int size);
 t_pixel wrapper(t_pixel p, t_data *data);
 void	draw_line(t_pixel f, t_pixel s, t_data *fdf);

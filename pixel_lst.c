@@ -24,7 +24,7 @@ t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 	if (!new)
 		return (NULL);
 	new->z = 0;
-	new->color = 0;
+	new->color = 0x00ffffff;
 	new->x = cord->x++;
 	new->y = cord->y;
 	new->next = NULL;

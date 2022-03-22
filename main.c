@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 01:57:43 by iraqi             #+#    #+#             */
-/*   Updated: 2022/02/21 20:47:39 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/03/06 20:58:34 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av)
 	data->cam = cam_initializer(data);
 	data->lines_map = lines_to_map(lines, data->map->height + 1);
 	draw(data->lines_map,data);
+	mlx_key_hook(data->win, key_hook, data);
 	mlx_loop(data->mlx);
 	//die("Done\n",EXIT_SUCCESS,&pixels);
 	return (0);

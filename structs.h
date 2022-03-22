@@ -23,8 +23,6 @@ typedef struct		s_map
 	int				map_size;
 	int				height;
 	int				width;
-
-
 }					t_map;
 
 typedef	struct 		s_camera
