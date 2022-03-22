@@ -22,9 +22,13 @@ static void iso(int *x, int *y, int z)
     *y = (previous_x + previous_y) * 0.5 - z;
 }
 
-t_pixel wrapper(t_pixel p)
+t_pixel wrapper(t_pixel p, t_data *data)
 {
+    p.x *= data->cam->zoom;
+    p.y *= data->cam->zoom;
     iso(&p.x, &p.y, p.z);
+    p.x += data->cam->x_pos;
+    p.y += data->cam->y_pos;
     return (p);
 }
 
@@ -64,7 +68,8 @@ void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
 		my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, c);
-		if ((c_data->error[1] = c_data->error[0] * 2) > -c_data->delta.y)
+        c_data->error[1] = c_data->error[0] * 2;
+		if (c_data->error[1] > -c_data->delta.y)
 		{
 			c_data->error[0] -= c_data->delta.y;
 			c_data->current.x += c_data->sign.x;
@@ -89,9 +94,9 @@ void draw(t_pixel **lines_map, t_data *data)
         while (x <= data->map->width - 1)
         {
             if (x != data->map->width - 1)
-                draw_line(lines_map[y][x], lines_map[y][x + 1], data);
+                draw_line(wrapper(lines_map[y][x], data), wrapper(lines_map[y][x + 1], data), data);
             if (y != data->map->height - 1)
-                draw_line(lines_map[y][x], lines_map[y + 1][x], data);
+                draw_line(wrapper(lines_map[y][x], data), wrapper(lines_map[y + 1][x], data), data);
             x++;
         }
         y++;

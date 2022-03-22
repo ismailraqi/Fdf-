@@ -22,8 +22,8 @@
 # include "structs.h"
 # include "keycode.h"
 
-# define WIDTH  1000
-# define HEIGHT 1000 
+# define WIDTH  500
+# define HEIGHT 500 
 void    draw(t_pixel **lines_map, t_data *data);
 
 //      FILE HANDLING        //
@@ -79,8 +79,8 @@ int		key_hook(int keycode, t_data *data);
 t_lines    *new_line(t_pixel *f_pixel);
 void    cat_lines(t_lines **mother, t_lines *son);
 t_pixel     **lines_to_map(t_lines *lines, int size);
-t_pixel wrapper(t_pixel p);
+t_pixel wrapper(t_pixel p, t_data *data);
 void	draw_line(t_pixel f, t_pixel s, t_data *fdf);
-
+t_cam   *cam_initializer(t_data *data);
 
 # endif

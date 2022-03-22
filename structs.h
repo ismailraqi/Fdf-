@@ -27,6 +27,14 @@ typedef struct		s_map
 
 }					t_map;
 
+typedef	struct 		s_camera
+{
+	int				zoom;
+	int				x_pos;
+	int				y_pos;
+	int				z;
+}					t_cam;
+
 typedef struct		s_data
 {
 	void			*mlx;
@@ -38,8 +46,7 @@ typedef struct		s_data
 	int				endian;
 	t_map			*map;
 	t_pixel			**lines_map;
-
-	int				zoom;
+	t_cam			*cam;
 }					t_data;
 
 typedef struct 		s_lines
@@ -55,6 +62,8 @@ typedef struct 		s_draw
 	t_pixel			current;
 	int				error[2];
 }					t_draw;
+
+
 
 
 #endif 
