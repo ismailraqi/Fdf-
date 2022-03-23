@@ -30,14 +30,12 @@ t_cam   *cam_initializer(t_data *data)
     t_cam   *cam;
 
     cam = (t_cam *) malloc(sizeof(t_cam));
-    cam->x_pos = (WIDTH / 2);
+    cam->x_pos = (WIDTH / 2) ;
     cam->y_pos = (HEIGHT / 2);
-    if (data->map->width > 500)
-        cam->zoom = 5;
-    else if (data->map->width > 300)
-        cam->zoom = 7;
+    if ((WIDTH / data->map->width / 2) > (HEIGHT / data->map->height / 2))
+        cam->zoom = (HEIGHT / data->map->height / 2);
     else 
-        cam->zoom = 20;
+        cam->zoom = (WIDTH / data->map->width / 2);
     cam->z = 1;
     return (cam);
 }

@@ -24,11 +24,17 @@ static void iso(int *x, int *y, int z)
 
 t_pixel wrapper(t_pixel p, t_data *data)
 {
+    int     a,b;
+
+    data->cam->zoom = 0.5;
     p.x *= data->cam->zoom;
     p.y *= data->cam->zoom;
     iso(&p.x, &p.y, p.z);
-    p.x += data->cam->x_pos;
-    p.y += data->cam->y_pos;
+    a = (data->map->width / 2) * data->cam->zoom;
+    b = (data->map->height / 2) * data->cam->zoom;
+    iso(&a, &b, 0);
+    p.x += data->cam->x_pos  - a;
+    p.y += data->cam->y_pos - b;
     return (p);
 }
 
@@ -46,16 +52,6 @@ t_draw *init_draw(t_pixel *p1, t_pixel *p2, t_data *f_data)
     data = (t_draw *)malloc(sizeof(t_draw));
     if (!data)
         return (NULL);
-    p1->x *= 2;
-    p1->y *= 2;
-    p2->x *= 2;
-    p2->y *= 2;
-    iso(&p1->x, &p1->y, p1->z);
-    iso(&p2->x, &p2->y, p2->z);
-    p1->x += 200;
-    p1->y += 200;
-    p2->x += 200;
-    p2->y += 200;
     data->delta.x = abs(p2->x - p1->x);
     data->delta.y = abs(p2->y - p1->y);
     data->sign.x = sign_test(p1->x, p2->x);

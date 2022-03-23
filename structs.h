@@ -27,7 +27,7 @@ typedef struct		s_map
 
 typedef	struct 		s_camera
 {
-	int				zoom;
+	double			zoom;
 	int				x_pos;
 	int				y_pos;
 	int				z;
