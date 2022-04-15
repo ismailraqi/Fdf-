@@ -36,6 +36,8 @@ t_cam   *cam_initializer(t_data *data)
         cam->zoom = (HEIGHT / data->map->height / 2);
     else 
         cam->zoom = (WIDTH / data->map->width / 2);
+    if (cam->zoom <= 0)
+        cam->zoom = 0.5;
     cam->z = 1;
     return (cam);
 }

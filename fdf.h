@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/03/12 02:14:22 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/15 00:15:09 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ t_pixel wrapper(t_pixel p, t_data *data);
 void	draw_line(t_pixel f, t_pixel s, t_data *fdf);
 t_cam   *cam_initializer(t_data *data);
 
+int get_color(t_pixel current, t_pixel start, t_pixel end, t_cord delta);
 # endif

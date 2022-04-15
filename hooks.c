@@ -9,7 +9,7 @@ int	key_hook(int keycode, t_data *data)
     }
 	if (keycode == C_KEY)
 		mlx_clear_window(data->mlx,data->win);	
-	printf("Hello from key_hook! pressed button is ====> %d\n",data->cam->zoom);
+	printf("Hello from key_hook! pressed button is ====> %f\twidth : %d\theight : %d\n",data->cam->zoom,data->map->width, data->map->height);
 	return (0);
 }
 

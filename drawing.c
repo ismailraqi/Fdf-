@@ -26,7 +26,7 @@ t_pixel wrapper(t_pixel p, t_data *data)
 {
     int     a,b;
 
-    data->cam->zoom = 0.5;
+    //data->cam->zoom = 0.5;
     p.x *= data->cam->zoom;
     p.y *= data->cam->zoom;
     iso(&p.x, &p.y, p.z);
@@ -67,13 +67,10 @@ void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
     int     c;
 
     c_data = init_draw(&p1, &p2, data);
-    if (p1.z != 0 || p2.z != 0)
-        c = 0x00604511;
-    else 
-        c = 0x00ffffff;
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
-		my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, c);
+        // TODO : Create a function to generate color depends on z Value and Current Color
+		my_mlx_pixel_put(data, c_data->current.x, c_data->current.y, color_generator(c_data->current.z,c_data->current.color));
         c_data->error[1] = c_data->error[0] * 2;
 		if (c_data->error[1] > -c_data->delta.y)
 		{
