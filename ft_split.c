@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/20 00:08:06 by iraqi             #+#    #+#             */
+/*   Updated: 2022/04/20 01:13:01 by iraqi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 t_pixel	*getlast(t_pixel *h)
@@ -7,38 +19,53 @@ t_pixel	*getlast(t_pixel *h)
 	return (h);
 }
 
+static	t_split	*init_param(void)
+{
+	t_split	*param;
+
+	param = (t_split *) malloc(sizeof(t_split));
+	if (!param)
+		return (NULL);
+	param->beg = 0;
+	param->end = 0;
+	param->new = NULL;
+	return (param);
+}
+
+static	void	*find_position(char *str, t_split *param)
+{
+	while (str[param->end] == ' ')
+		param->end = (param->beg++, param->end + 1);
+	while (str[param->end] && str[param->end] != ' ')
+		param->end++;
+	return (param);
+}
+
 t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last)
 {
-	t_pixel	*new;
-	t_pixel	*tmp;
-	int		beg;
-	int		end;
+	t_split	*param;
 
+	param = init_param();
 	if (!str)
 		return (NULL);
-	beg = 0;
-	end = 0;
-	new = NULL;
-	while (str[end])
+	while (str[param->end])
 	{
-		while (str[end] == ' ')
-			end = (beg++, end + 1);
-		while (str[end] && str[end] != ' ')
-			end++;
-		*last = add_pixel(&new, str + beg, cord, end - beg);
-		if ((end > beg) && !*last)
-			return (pixels_clear(&new), NULL);
-		beg = end;
+		find_position(str, param);
+		*last = add_pixel(&param->new, str + param->beg, \
+		cord, param->end - param->beg);
+		if ((param->end > param->beg) && !*last)
+			return (pixels_clear(&param->new), NULL);
+		param->beg = param->end;
 	}
-	tmp = new;
-	new = (t_pixel *)malloc(cord->x * sizeof(t_pixel));
-	if (!new)
-		return (pixels_clear(&tmp), NULL);
-	beg = 0;
-	while (beg < cord->x)
+	param->tmp = param->new;
+	param->new = (t_pixel *)malloc(cord->x * sizeof(t_pixel));
+	if (!param->new)
+		return (pixels_clear(&param->tmp), NULL);
+	param->beg = 0;
+	while (param->beg < cord->x)
 	{
-		new[beg++] = *(tmp);
-		tmp = tmp->next;
+		param->new[param->beg++] = *(param->tmp);
+		param->tmp = param->tmp->next;
 	}
-	return (new);
+	return (param->new);
 }

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 01:57:43 by iraqi             #+#    #+#             */
-/*   Updated: 2022/03/06 20:58:34 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/19 02:14:32 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@ int	main(int ac, char **av)
 	last = NULL;
 	if (ac != 2)
 		exit(EXIT_FAILURE);
-	lines = get_list(av[1],&last);
 	data = mlx_initializer();
+	lines = get_list(av[1],&last);
 	data->map = map_initializer(last);
 	data->cam = cam_initializer(data);
 	data->lines_map = lines_to_map(lines, data->map->height + 1);
 	draw(data->lines_map,data);
 	mlx_key_hook(data->win, key_hook, data);
+	mlx_mouse_hook(data->win, mouse_hook, data);
 	mlx_loop(data->mlx);
 	//die("Done\n",EXIT_SUCCESS,&pixels);
 	return (0);

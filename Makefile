@@ -11,9 +11,24 @@ SRC   = ft_split.c\
 		hooks.c\
 		initializer.c\
 		drawing.c\
-		lines_lst.c
+		lines_lst.c\
+		bernstein.c\
+		projection.c\
+		put_pixel.c
 
-OBJ = $(SRC:.c=.o)
+OBJ = ft_split.o\
+		ft_strlen.o\
+		get_list.o\
+		main.o\
+		pixel_lst.o\
+		utils.o\
+		hooks.o\
+		initializer.o\
+		drawing.o\
+		lines_lst.o\
+		bernstein.o\
+		projection.o\
+		put_pixel.o
 
 LIBL = -lmlx -lXext -lX11 
 LIBM = -lmlx -lm -framework OpenGL -framework AppKit
@@ -40,4 +55,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean re mac
+.PHONY : clean fclean re mac all

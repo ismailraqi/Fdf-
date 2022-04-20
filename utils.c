@@ -1,5 +1,18 @@
 #include "fdf.h"
 
+int max(int a, int b)
+{
+    if (a > b)
+        return (a);
+    return (b);
+}
+
+int sign_test(int a, int b)
+{
+    if (a < b)
+        return (1);
+    return (-1);
+}
 
 static	int	contains(char *str, char c)
 {

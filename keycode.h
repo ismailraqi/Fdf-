@@ -2,9 +2,13 @@
 #define KEYCODE_H
 
 
-# define S_KEY 		1
+# define UP_KEY 	126
+# define DOWN_KEY 	125
+# define RIGHT_KEY 	124
+# define LEFT_KEY 	123
+
 # define ESC_KEY 	53
-# define C_KEY		8
-# define F_KEY		3
+# define P_KEY		35
+# define I_KEY		34
 
 #endif
