@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:23:55 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 00:37:49 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 06:55:24 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ t_cam	*cam_initializer(t_data *data)
 		cam->zoom = (WIDTH / data->map->width / 2);
 	if (cam->zoom <= 0)
 		cam->zoom = 0.5;
+	cam->x_angle = 0.;
+	cam->y_angle = 0.;
+	cam->z_angle = 0.;
 	return (cam);
 }
 

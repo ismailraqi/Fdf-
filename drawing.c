@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 02:08:30 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 07:14:14 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 	double	t;
 
 	c_data = init_draw(&p1, &p2, data);
-	t = (double)max(p1.z, p2.z) / 10.;
+	t = (double)max(p1.old_z, p2.old_z) / 10.;
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
 		my_mlx_pixel_put(data, c_data->current.x, \

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:47:05 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 02:28:50 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 07:05:43 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static	int	contains(char *str, char c)
 
 int	get_hight(t_pixel *pixel, char *str)
 {
-	int	i;
-	int	t;
+	int		i;
+	int		t;
 
 	if (!str)
 		return (-1);

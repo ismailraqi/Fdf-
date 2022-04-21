@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:38:46 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 01:09:23 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 07:13:07 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_pixel
 	int				x;
 	int				y;
 	int				z;
+	int				old_z;
 	int				color;
 	int				count;
 	struct s_pixel	*next;
@@ -43,6 +44,9 @@ typedef struct s_camera
 	double			zoom;
 	int				x_pos;
 	int				y_pos;
+	float			x_angle;
+	float			y_angle;
+	float			z_angle;
 }					t_cam;
 
 typedef struct s_data

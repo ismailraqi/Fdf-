@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 02:27:50 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 06:42:17 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,11 @@ t_pixel	**lines_to_map(t_lines *lines, int size);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		bernstein(double t);
 t_pixel	wrapper(t_pixel p, t_data *data);
+
+//      ROTATION        //
+
+void	x_rotation(float angle, int *y, int z);
+void	y_rotation(float angle, int *x, int *z, int y);
+void	z_rotation(float angle, int *y, int z, int *x);
 
 #endif

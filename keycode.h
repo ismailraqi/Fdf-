@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:27:08 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 00:27:28 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 07:20:51 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,11 @@
 # define ESC_KEY 	53
 # define P_KEY		35
 # define I_KEY		34
+# define X_KEY 	    7
+# define Y_KEY		16
+# define Z_KEY		6
+# define A_KEY 	    0
+# define S_KEY		1
+# define D_KEY		2
 
 #endif

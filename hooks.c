@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:20:52 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 00:23:21 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 07:22:12 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	key_hook(int keycode, t_data *data)
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}
+	printf("button code : %d\n",keycode);
 	if (keycode == I_KEY)
 		data->is_parallel = 1;
 	if (keycode == P_KEY)
@@ -31,6 +32,20 @@ int	key_hook(int keycode, t_data *data)
 		data->cam->x_pos -= 10;
 	if (keycode == RIGHT_KEY)
 		data->cam->x_pos += 10;
+		
+	if (keycode == X_KEY)
+		data->cam->x_angle += 0.08;
+	if (keycode == Y_KEY)
+		data->cam->y_angle += 0.08;
+	if (keycode == Z_KEY)
+		data->cam->z_angle += 0.08;
+		
+	if (keycode == A_KEY)
+		data->cam->z_angle -= 0.08;
+	if (keycode == S_KEY)
+		data->cam->x_angle -= 0.08;
+	if (keycode == D_KEY)
+		data->cam->y_angle -= 0.08;
 	mlx_clear_window(data->mlx, data->win);
 	draw(data->lines_map, data);
 	return (0);
