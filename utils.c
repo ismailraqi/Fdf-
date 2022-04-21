@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/21 00:47:05 by iraqi             #+#    #+#             */
+/*   Updated: 2022/04/21 02:28:50 by iraqi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-int max(int a, int b)
+int	max(int a, int b)
 {
-    if (a > b)
-        return (a);
-    return (b);
+	if (a > b)
+		return (a);
+	return (b);
 }
 
-int sign_test(int a, int b)
+int	sign_test(int a, int b)
 {
-    if (a < b)
-        return (1);
-    return (-1);
+	if (a < b)
+		return (1);
+	return (-1);
 }
 
 static	int	contains(char *str, char c)
@@ -25,7 +37,7 @@ static	int	contains(char *str, char c)
 	return (-1);
 }
 
-int	get_hight_n_color(t_pixel *pixel, char *str, int size, char *base)
+int	get_hight(t_pixel *pixel, char *str)
 {
 	int	i;
 	int	t;
@@ -39,18 +51,5 @@ int	get_hight_n_color(t_pixel *pixel, char *str, int size, char *base)
 	while (str[i] >= '0' && str[i] <= '9')
 		pixel->z = (i++, 10 * pixel->z + (str[i - 1] - '0'));
 	pixel->z *= t;
-	if (i == size)
-		return (0);
-	i += 3;
-	while (i < size)
-	{
-		t = (str[i] == 'A') * 10 + (str[i] == 'B') * 11 + (str[i] == 'C') * 12;
-		t = (str[i] == 'D') * 13 + (str[i] == 'E') * 14 + (str[i] == 'F') * 15;
-		if (!t)
-			t = contains(base, str[i]);
-		if (t < 0)
-			return (0);
-		pixel->color = (i++, (pixel->color << 4) | t);
-	}
 	return (0);
 }

@@ -1,5 +1,16 @@
-#include "fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pixel_lst.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/21 00:33:47 by iraqi             #+#    #+#             */
+/*   Updated: 2022/04/21 02:27:42 by iraqi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "fdf.h"
 
 t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 {
@@ -14,9 +25,8 @@ t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 	new->x = cord->x++;
 	new->y = cord->y;
 	new->next = NULL;
-	if (get_hight_n_color(new, str, size, "01234567890abcdef"))
+	if (get_hight(new, str))
 		return (free(new), NULL);
-	
 	new->count = cord->num++;
 	if (!*head)
 		return (*head = new, new);
@@ -26,20 +36,19 @@ t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
 	return (curr->next = new, new);
 }
 
-void    pixels_clear(t_pixel **head)
+void	pixels_clear(t_pixel **head)
 {
-    t_pixel	*current;
-	t_pixel *next;
+	t_pixel	*current;
+	t_pixel	*next;
 
-    current = *head;
-
-    while (current)
-    {		
-        next = current->next;
-        free(current);
-        current = next;
-    }
-    *head = NULL;
+	current = *head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
 }
 
 void	cat_lst(t_pixel **mother, t_pixel *son)
@@ -57,12 +66,11 @@ void	cat_lst(t_pixel **mother, t_pixel *son)
 		*mother = son;
 }
 
-
-void    die(char *msg, int code, t_pixel **lst)
+void	die(char *msg, int code, t_pixel **lst)
 {
-    if (lst)
-        pixels_clear(lst);
-    if (msg)
-        write(2, msg, ft_strlen(msg));
-    exit(code);
+	if (lst)
+		pixels_clear(lst);
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	exit(code);
 }

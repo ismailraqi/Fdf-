@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:08:06 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/20 01:13:01 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 00:38:06 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last)
 	{
 		find_position(str, param);
 		*last = add_pixel(&param->new, str + param->beg, \
-		cord, param->end - param->beg);
+							cord, param->end - param->beg);
 		if ((param->end > param->beg) && !*last)
 			return (pixels_clear(&param->new), NULL);
 		param->beg = param->end;

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/20 00:02:58 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 02:08:30 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
 		my_mlx_pixel_put(data, c_data->current.x, \
-		c_data->current.y, bernstein(t));
+						c_data->current.y, bernstein(t));
 		c_data->error[1] = c_data->error[0] * 2;
 		if (c_data->error[1] > -c_data->delta.y)
 		{

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:14:41 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/20 01:32:41 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 00:17:57 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,20 @@ static	t_get_list	*init_param(char *fname)
 t_lines	*get_list(char *fname, t_pixel **last)
 {
 	int			bytes;
-	t_get_list	*param;
+	t_get_list	*p;
 
-	param = init_param(fname);
+	p = init_param(fname);
 	while (1)
 	{
 		bytes = 0;
-		param->cord.x = 0;
-		while (read(param->fd, param->line + bytes, 1) == 1 && param->line[bytes] != '\n' && ++bytes);			
+		p->cord.x = 0;
+		while (read(p->fd, p->line + bytes, 1) == 1 && p->line[bytes] != '\n')
+			++bytes;
 		if (!bytes)
-			return (close(param->fd), free(param->line), param->lines);
-		param->line[bytes + (param->line[bytes] == '\n')] = '\0';
-		param->tmp = split_delim(param->line, &param->cord, last);
-		cat_lines(&param->lines, new_line(param->tmp));
-		param->cord.y++;
+			return (close(p->fd), free(p->line), p->lines);
+		p->line[bytes + (p->line[bytes] == '\n')] = '\0';
+		p->tmp = split_delim(p->line, &p->cord, last);
+		cat_lines(&p->lines, new_line(p->tmp));
+		p->cord.y++;
 	}
 }

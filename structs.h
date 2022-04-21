@@ -1,7 +1,20 @@
-#ifndef STRUCT_H
-#define STRUCT_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   structs.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/21 00:38:46 by iraqi             #+#    #+#             */
+/*   Updated: 2022/04/21 01:09:23 by iraqi            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-typedef struct 		s_pixel
+#ifndef STRUCTS_H
+
+# define STRUCTS_H
+
+typedef struct s_pixel
 {
 	int				x;
 	int				y;
@@ -11,28 +24,28 @@ typedef struct 		s_pixel
 	struct s_pixel	*next;
 }					t_pixel;
 
-typedef struct		s_cord
+typedef struct s_cord
 {
 	int				x;
 	int				y;
 	int				num;
 }					t_cord;
 
-typedef struct		s_map
+typedef struct s_map
 {
 	int				map_size;
 	int				height;
 	int				width;
 }					t_map;
 
-typedef	struct 		s_camera
+typedef struct s_camera
 {
 	double			zoom;
 	int				x_pos;
 	int				y_pos;
 }					t_cam;
 
-typedef struct		s_data
+typedef struct s_data
 {
 	void			*mlx;
 	void			*win;
@@ -50,7 +63,7 @@ typedef struct		s_data
 	t_cam			*cam;
 }					t_data;
 
-typedef	struct 		s_split_param
+typedef struct s_split_param
 {
 	t_pixel	*new;
 	t_pixel	*tmp;
@@ -58,13 +71,13 @@ typedef	struct 		s_split_param
 	int		end;
 }					t_split;
 
-typedef struct 		s_lines
+typedef struct s_lines
 {
 	t_pixel			*line;
-	struct	s_lines	*next;
+	struct s_lines	*next;
 }					t_lines;
 
-typedef	struct 		s_get_list_param
+typedef struct s_get_list_param
 {
 	t_cord	cord;
 	t_lines	*lines;
@@ -74,7 +87,13 @@ typedef	struct 		s_get_list_param
 	int		bytes;
 }					t_get_list;
 
-typedef struct 		s_draw
+typedef struct s_get_color_param
+{
+	int	i;
+	int	t;
+}					t_get_color;
+
+typedef struct s_draw
 {
 	t_cord			delta;
 	t_cord			sign;

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/20 00:07:52 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/21 02:27:50 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw(t_pixel **lines_map, t_data *data);
 
 t_lines	*get_list(char *fname, t_pixel **last);
 t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last);
-int		get_hight_n_color(t_pixel *pixel, char *str, int size, char *base);
+int		get_hight(t_pixel *pixel, char *str);
 
 //      FILE HANDLING END    //
 
