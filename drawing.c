@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/22 22:11:02 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/23 06:52:16 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,17 @@ static void	print_menu(t_data *data)
 	i = 0;
 	img_ptr = (int *)data->data_addr;
 	starting_point = WIDTH - M_WIDTH;
-	while (i < HEIGHT)
+	while (i < M_HEIGHT)
 	{
 		j = 0;
 		while (j < WIDTH)
 		{
 			if (j >= starting_point)
-				info_pixel_put(data, j, i, 0x00ffffff);
+				info_pixel_put(data, j, i, 0x00ffeda6);
 			j++;
 		}
 		i++;
 	}
-	put_strings_to_image(data);
 }
 
 void	draw(t_pixel **lines_map, t_data *data)
@@ -100,4 +99,5 @@ void	draw(t_pixel **lines_map, t_data *data)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	put_strings_to_image(data);
 }

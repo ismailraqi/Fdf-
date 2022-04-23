@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/22 05:06:58 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/23 06:47:49 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 
 # define WIDTH  1200
 # define HEIGHT 900
-# define M_WIDTH  200
-# define M_HEIGHT 900
+# define M_WIDTH  400
+# define M_HEIGHT 200
 
 void	draw(t_pixel **lines_map, t_data *data);
 
