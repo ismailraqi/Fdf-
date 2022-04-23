@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 07:14:14 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/22 22:11:02 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 	t = (double)max(p1.old_z, p2.old_z) / 10.;
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
-		my_mlx_pixel_put(data, c_data->current.x, \
+		map_pixel_put(data, c_data->current.x, \
 						c_data->current.y, bernstein(t));
 		c_data->error[1] = c_data->error[0] * 2;
 		if (c_data->error[1] > -c_data->delta.y)
@@ -52,6 +52,30 @@ static void	background_coloring(t_data *data)
 	}
 }
 
+static void	print_menu(t_data *data)
+{
+	int	i;
+	int	j;
+	int	starting_point;
+	int	*img_ptr;
+
+	i = 0;
+	img_ptr = (int *)data->data_addr;
+	starting_point = WIDTH - M_WIDTH;
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+		{
+			if (j >= starting_point)
+				info_pixel_put(data, j, i, 0x00ffffff);
+			j++;
+		}
+		i++;
+	}
+	put_strings_to_image(data);
+}
+
 void	draw(t_pixel **lines_map, t_data *data)
 {
 	int	y;
@@ -59,6 +83,7 @@ void	draw(t_pixel **lines_map, t_data *data)
 
 	y = 0;
 	background_coloring(data);
+	print_menu(data);
 	while (y <= data->map->height - 1)
 	{
 		x = 0;

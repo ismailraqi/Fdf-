@@ -15,7 +15,8 @@ SRC   = ft_split.c\
 		bernstein.c\
 		projection.c\
 		put_pixel.c\
-		rotation.c
+		rotation.c\
+		put_info_into_image.c
 
 OBJ = ft_split.o\
 		ft_strlen.o\
@@ -30,7 +31,8 @@ OBJ = ft_split.o\
 		bernstein.o\
 		projection.o\
 		put_pixel.o\
-		rotation.o
+		rotation.o\
+		put_info_into_image.o
 
 LIBL = -lmlx -lXext -lX11 
 LIBM = -lmlx -lm -framework OpenGL -framework AppKit

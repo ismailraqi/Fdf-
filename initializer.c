@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:23:55 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 06:55:24 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/23 01:37:17 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ t_cam	*cam_initializer(t_data *data)
 	t_cam	*cam;
 
 	cam = (t_cam *) malloc(sizeof(t_cam));
-	cam->x_pos = (WIDTH / 2);
+	cam->x_pos = ((WIDTH - M_WIDTH) / 2);
 	cam->y_pos = (HEIGHT / 2);
-	if ((WIDTH / data->map->width / 2) > (HEIGHT / data->map->height / 2))
+	if (((WIDTH - M_WIDTH) / data->map->width / 2) \
+					> (HEIGHT / data->map->height / 2))
 		cam->zoom = (HEIGHT / data->map->height / 2);
 	else
-		cam->zoom = (WIDTH / data->map->width / 2);
+		cam->zoom = ((WIDTH - M_WIDTH) / data->map->width / 2);
 	if (cam->zoom <= 0)
 		cam->zoom = 0.5;
 	cam->x_angle = 0.;

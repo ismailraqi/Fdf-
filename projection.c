@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:44:22 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 07:22:43 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/22 04:49:18 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static	t_pixel	projection_n_shift(t_pixel pixel, t_data *data)
 {
 	int	a;
 	int	b;
-	
+
 	pixel.old_z = pixel.z;
 	a = (data->map->width / 2) * data->cam->zoom;
 	b = (data->map->height / 2) * data->cam->zoom;
