@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/23 06:52:16 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 00:38:10 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 			c_data->current.y += c_data->sign.y;
 		}
 	}
+	free(c_data);
 }
 
 static void	background_coloring(t_data *data)

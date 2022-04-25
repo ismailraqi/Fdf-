@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:20:52 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/22 04:56:28 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 01:11:05 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	key_hook(int keycode, t_data *data)
 	rotation_hooks(keycode, data);
 	if (keycode == ESC_KEY)
 	{
+		pixels_clear(data->lines_map);
+		mlx_destroy_image(data->mlx, data->img);
 		mlx_destroy_window(data->mlx, data->win);
 		exit(0);
 	}

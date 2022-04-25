@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/23 06:47:49 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 00:36:09 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <mlx.h>
 # include <math.h>
 # include "structs.h"
@@ -24,7 +23,7 @@
 # define WIDTH  1200
 # define HEIGHT 900
 # define M_WIDTH  400
-# define M_HEIGHT 200
+# define M_HEIGHT 250
 
 void	draw(t_pixel **lines_map, t_data *data);
 
@@ -77,6 +76,7 @@ void	info_pixel_put(t_data *data, int x, int y, int color);
 int		bernstein(double t);
 t_pixel	wrapper(t_pixel p, t_data *data);
 void	put_strings_to_image(t_data *data);
+void	lines_clear(t_lines **head);
 
 //      ROTATION        //
 

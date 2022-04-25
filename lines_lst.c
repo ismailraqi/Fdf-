@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:27:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 00:29:53 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 01:10:39 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,19 @@ t_pixel	**lines_to_map(t_lines *lines, int size)
 		curr = curr->next;
 	}
 	return (lines_map);
+}
+
+void	lines_clear(t_lines **head)
+{
+	t_lines	*current;
+	t_lines	*next;
+
+	current = *head;
+	while (current)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	*head = NULL;
 }
