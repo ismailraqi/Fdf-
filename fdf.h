@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 00:36:09 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/26 02:34:05 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <math.h>
 # include "structs.h"
 # include "keycode.h"
+#include <stdio.h>
 
 # define WIDTH  1200
 # define HEIGHT 900
@@ -40,13 +41,13 @@ int		get_hight(t_pixel *pixel, char *str);
 t_data	*mlx_initializer(void);
 t_map	*map_initializer(t_pixel *last);
 t_cam	*cam_initializer(t_data *data);
-t_draw	*init_draw(t_pixel *p1, t_pixel *p2, t_data *f_data);
+t_draw	*init_draw(t_pixel *p1, t_pixel *p2);
 
 //      INITIALIZING PROTOTYPES  END      //
 
 //      LIST HANDLING        //
 
-t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size);
+t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord);
 void	pixels_clear(t_pixel **head);
 void	cat_lst(t_pixel **mother, t_pixel *son);
 void	cat_lines(t_lines **mother, t_lines *son);
@@ -77,11 +78,13 @@ int		bernstein(double t);
 t_pixel	wrapper(t_pixel p, t_data *data);
 void	put_strings_to_image(t_data *data);
 void	lines_clear(t_lines **head);
+int		exit_hook(t_data *data);
+void	lines_map_clear(t_data *data);
 
 //      ROTATION        //
 
 void	x_rotation(float angle, int *y, int z);
 void	y_rotation(float angle, int *x, int *z, int y);
-void	z_rotation(float angle, int *y, int z, int *x);
+void	z_rotation(float angle, int *y, int *x);
 
 #endif

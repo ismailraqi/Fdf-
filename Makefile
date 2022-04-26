@@ -1,8 +1,8 @@
-FLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 
-NAME  = fdf
+NAME = fdf
 
-SRC   = ft_split.c\
+SRC = ft_split.c\
 		ft_strlen.c\
 		get_list.c\
 		main.c\
@@ -34,20 +34,21 @@ OBJ = ft_split.o\
 		rotation.o\
 		put_info_into_image.o
 
-LIBL = -lmlx -lXext -lX11 
+LIBL = -lmlx -lXext -lX11 -lm
 LIBM = -lmlx -lm -framework OpenGL -framework AppKit
 
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	@echo "Creating LINUX executable $(NAME) ..."
-	@gcc -o $(NAME) $(OBJ) $(LIBL)
+	@echo "Creating MAC executable $(NAME) ..."
+	@gcc $(CFLAGS) -o $(NAME) $(OBJ) $(LIBM)
 
 %.o: %.c 
 	@gcc $(CFLAGS) -c $<
 
-mac	: $(OBJ)
-	gcc -o $(NAME) $(OBJ) $(LIBM)
+linux : $(OBJ)
+	@echo "Creating LINUX executable $(NAME) ..."
+	gcc $(CFLAGS) -o $(NAME) $(OBJ) $(LIBL)
 
 clean :
 	@echo "Removing object files ..."
@@ -59,4 +60,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean re mac all
+.PHONY : clean fclean re linux all

@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:08:06 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/24 04:36:26 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:54:14 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,15 @@ t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last)
 	while (str[param->end])
 	{
 		find_position(str, param);
-		*last = add_pixel(&param->new, str + param->beg, \
-							cord, param->end - param->beg);
+		*last = add_pixel(&param->new, str + param->beg, cord);
 		if ((param->end > param->beg) && !*last)
-			return (pixels_clear(&param->new), NULL);
+			return (pixels_clear(&param->new), free(param), NULL);
 		param->beg = param->end;
 	}
 	param->tmp = param->new;
 	param->new = (t_pixel *)malloc(cord->x * sizeof(t_pixel));
 	if (!param->new)
-		return (pixels_clear(&param->tmp), NULL);
+		return (pixels_clear(&param->tmp), free(param), NULL);
 	param->beg = 0;
 	while (param->beg < cord->x)
 	{

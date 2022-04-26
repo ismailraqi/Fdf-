@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:47:05 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 07:05:43 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:51:01 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@ int	sign_test(int a, int b)
 {
 	if (a < b)
 		return (1);
-	return (-1);
-}
-
-static	int	contains(char *str, char c)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		if (str[i] == c)
-			return (i);
 	return (-1);
 }
 

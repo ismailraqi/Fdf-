@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:23:55 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/23 03:06:07 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:51:35 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_cam	*cam_initializer(t_data *data)
 	return (cam);
 }
 
-t_draw	*init_draw(t_pixel *p1, t_pixel *p2, t_data *f_data)
+t_draw	*init_draw(t_pixel *p1, t_pixel *p2)
 {
 	t_draw	*data;
 
@@ -71,6 +71,6 @@ t_draw	*init_draw(t_pixel *p1, t_pixel *p2, t_data *f_data)
 	data->sign.x = sign_test(p1->x, p2->x);
 	data->sign.y = sign_test(p1->y, p2->y);
 	data->current = *p1;
-	data->error[0] = (data->delta.x - data->delta.y);
+	data->decision[0] = (data->delta.x - data->delta.y);
 	return (data);
 }

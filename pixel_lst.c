@@ -6,13 +6,13 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:33:47 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 02:27:42 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:50:05 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord, int size)
+t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord)
 {
 	t_pixel	*new;
 	t_pixel	*curr;

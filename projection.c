@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:44:22 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/22 04:49:18 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:53:25 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	t_pixel	projection_n_shift(t_pixel pixel, t_data *data)
 		iso(&a, &b, 0);
 		x_rotation(data->cam->x_angle, &pixel.y, pixel.z);
 		y_rotation(data->cam->y_angle, &pixel.x, &pixel.z, pixel.y);
-		z_rotation(data->cam->z_angle, &pixel.y, pixel.z, &pixel.x);
+		z_rotation(data->cam->z_angle, &pixel.y, &pixel.x);
 	}
 	pixel.x += data->cam->x_pos - a;
 	pixel.y += data->cam->y_pos - b;

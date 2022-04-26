@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 06:23:46 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/22 00:40:55 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:53:00 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	y_rotation(float angle, int *x, int *z, int y)
 	*z = y * cos(angle) - *x * sin(angle);
 }
 
-void	z_rotation(float angle, int *y, int z, int *x)
+void	z_rotation(float angle, int *y, int *x)
 {
 	*x = *x * cos(angle) - *y * sin(angle);
 	*y = *x * sin(angle) + *y * cos(angle);

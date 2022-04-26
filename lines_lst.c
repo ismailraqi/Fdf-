@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:27:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 01:10:39 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/26 02:35:53 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,10 @@ t_pixel	**lines_to_map(t_lines *lines, int size)
 	t_lines	*curr;
 	int		i;
 
-	lines_map = (t_pixel **) malloc(sizeof(t_pixel *) * size);
+	lines_map = (t_pixel **)malloc(sizeof(t_pixel *) * size);
 	if (!lines_map)
 		exit(EXIT_FAILURE);
+	lines_map[size] = NULL;
 	curr = lines;
 	i = 0;
 	while (curr)
@@ -57,6 +58,23 @@ t_pixel	**lines_to_map(t_lines *lines, int size)
 		curr = curr->next;
 	}
 	return (lines_map);
+}
+
+void	lines_map_clear(t_data *data)
+{
+	int		i;
+	t_pixel	**pixels;
+	t_pixel	*pixel;
+
+	pixels = data->lines_map;
+	i = -1;
+	while (++i < data->map->height)
+	{
+		pixel = pixels[i];
+		if (pixel)
+			pixels_clear(&pixel);
+	}
+	free(pixels);
 }
 
 void	lines_clear(t_lines **head)

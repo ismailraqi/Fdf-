@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:20:52 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 01:11:05 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/26 02:34:01 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,28 @@ static	void	rotation_hooks(int keycode, t_data *data)
 	mlx_clear_window(data->mlx, data->win);
 	draw(data->lines_map, data);
 }
+static	void	exit_cleaner(t_data *data)
+{
+	lines_map_clear(data);
+	//free(data->cam);
+	free(data->map);
+	mlx_destroy_image(data->mlx, data->img);
+	mlx_destroy_window(data->mlx, data->win);
+	printf("wa7ed3\n");
+}
+
+int	exit_hook(t_data *data)
+{
+	exit_cleaner(data);
+	exit(0);
+}
 
 int	key_hook(int keycode, t_data *data)
 {
 	rotation_hooks(keycode, data);
-	if (keycode == ESC_KEY)
+	if (keycode == ESC_KEY || keycode == 17)
 	{
-		pixels_clear(data->lines_map);
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
+		exit_cleaner(data);
 		exit(0);
 	}
 	if (keycode == I_KEY)
@@ -61,7 +74,8 @@ int	mouse_hook(int button, int x, int y, void *param)
 {
 	t_data	*data;
 	t_cam	*cam;
-
+	(void)x;
+	(void)y;
 	data = (t_data *)param;
 	cam = data->cam;
 	if (button == 5)

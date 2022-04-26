@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 23:45:57 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 00:38:10 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 22:52:37 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,21 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 	t_draw	*c_data;
 	double	t;
 
-	c_data = init_draw(&p1, &p2, data);
+	c_data = init_draw(&p1, &p2);
 	t = (double)max(p1.old_z, p2.old_z) / 10.;
 	while (c_data->current.x != p2.x || c_data->current.y != p2.y)
 	{
 		map_pixel_put(data, c_data->current.x, \
 						c_data->current.y, bernstein(t));
-		c_data->error[1] = c_data->error[0] * 2;
-		if (c_data->error[1] > -c_data->delta.y)
+		c_data->decision[1] = c_data->decision[0] * 2;
+		if (c_data->decision[1] > -c_data->delta.y)
 		{
-			c_data->error[0] -= c_data->delta.y;
+			c_data->decision[0] -= c_data->delta.y;
 			c_data->current.x += c_data->sign.x;
 		}
-		if (c_data->error[1] < c_data->delta.x)
+		if (c_data->decision[1] < c_data->delta.x)
 		{
-			c_data->error[0] += c_data->delta.x;
+			c_data->decision[0] += c_data->delta.x;
 			c_data->current.y += c_data->sign.y;
 		}
 	}
@@ -41,7 +41,6 @@ static void	draw_line(t_pixel p1, t_pixel p2, t_data *data)
 static void	background_coloring(t_data *data)
 {
 	int	i;
-	int	j;
 	int	*img_ptr;
 
 	img_ptr = (int *)data->data_addr;

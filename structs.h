@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:38:46 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/21 07:13:07 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/25 04:56:49 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,12 @@ typedef struct s_get_list_param
 	int		bytes;
 }					t_get_list;
 
-typedef struct s_get_color_param
-{
-	int	i;
-	int	t;
-}					t_get_color;
-
 typedef struct s_draw
 {
 	t_cord			delta;
 	t_cord			sign;
 	t_pixel			current;
-	int				error[2];
+	int				decision[2];
 }					t_draw;
 
 #endif 

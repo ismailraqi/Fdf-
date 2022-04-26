@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:14:41 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 00:39:37 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/04/26 02:28:43 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,4 @@ t_lines	*get_list(char *fname, t_pixel **last)
 		cat_lines(&p->lines, new_line(p->tmp));
 		p->cord.y++;
 	}
-	free(p);
 }
