@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 02:03:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/26 02:34:05 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/13 23:06:02 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 # include <mlx.h>
 # include <math.h>
 # include "structs.h"
 # include "keycode.h"
-#include <stdio.h>
 
 # define WIDTH  1200
 # define HEIGHT 900
@@ -30,9 +30,9 @@ void	draw(t_pixel **lines_map, t_data *data);
 
 //      FILE HANDLING        //
 
-t_lines	*get_list(char *fname, t_pixel **last);
-t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last);
-int		get_hight(t_pixel *pixel, char *str);
+t_get_list	*get_list(char *fname, t_pixel **last);
+t_pixel		*split_delim(char *str, t_cord *cord, t_pixel **last);
+int			get_hight(t_pixel *pixel, char *str);
 
 //      FILE HANDLING END    //
 
@@ -80,7 +80,6 @@ void	put_strings_to_image(t_data *data);
 void	lines_clear(t_lines **head);
 int		exit_hook(t_data *data);
 void	lines_map_clear(t_data *data);
-
 //      ROTATION        //
 
 void	x_rotation(float angle, int *y, int z);

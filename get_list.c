@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:14:41 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/26 02:28:43 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/13 23:40:06 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ static	t_get_list	*init_param(char *fname)
 	t_get_list	*param;
 
 	param = (t_get_list *) malloc(sizeof(t_get_list));
+	//printf("Address get list param %p\n", param);
 	param->fd = open(fname, O_RDONLY);
 	if (param->fd < 0)
 		return (NULL);
 	param->line = (char *)malloc(10000);
+	//printf("Address split param line %p\n", param->line);
 	if (!param->line)
 		return (NULL);
 	param->cord.num = 0;
@@ -29,12 +31,13 @@ static	t_get_list	*init_param(char *fname)
 	return (param);
 }
 
-t_lines	*get_list(char *fname, t_pixel **last)
+t_get_list	*get_list(char *fname, t_pixel **last)
 {
 	int			bytes;
 	t_get_list	*p;
 
 	p = init_param(fname);
+	p->tmp = NULL;
 	while (1)
 	{
 		bytes = 0;
@@ -42,7 +45,7 @@ t_lines	*get_list(char *fname, t_pixel **last)
 		while (read(p->fd, p->line + bytes, 1) == 1 && p->line[bytes] != '\n')
 			++bytes;
 		if (!bytes)
-			return (close(p->fd), free(p->line), p->lines);
+			return (close(p->fd), free(p->line), p);
 		p->line[bytes + (p->line[bytes] == '\n')] = '\0';
 		p->tmp = split_delim(p->line, &p->cord, last);
 		cat_lines(&p->lines, new_line(p->tmp));

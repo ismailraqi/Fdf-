@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:33:47 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 22:50:05 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/13 23:52:49 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_pixel	*add_pixel(t_pixel **head, char *str, t_cord *cord)
 	curr = *head;
 	while (curr->next)
 		curr = curr->next;
+	printf("Address fn add pixel %p [x val = %d || y val = %d ]\n", new, new->x, new->y);
 	return (curr->next = new, new);
 }
 

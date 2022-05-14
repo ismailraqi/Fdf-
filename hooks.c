@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:20:52 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/26 02:34:01 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/13 23:16:22 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,18 @@ static	void	rotation_hooks(int keycode, t_data *data)
 	mlx_clear_window(data->mlx, data->win);
 	draw(data->lines_map, data);
 }
+
 static	void	exit_cleaner(t_data *data)
 {
 	lines_map_clear(data);
-	//free(data->cam);
-	free(data->map);
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
-	printf("wa7ed3\n");
 }
 
 int	exit_hook(t_data *data)
 {
 	exit_cleaner(data);
+	pause();
 	exit(0);
 }
 

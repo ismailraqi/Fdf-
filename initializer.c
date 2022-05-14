@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:23:55 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/25 22:51:35 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/13 19:25:13 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_map	*map_initializer(t_pixel *last)
 	t_map	*map;
 
 	map = (t_map *) malloc(sizeof(t_map));
+	//printf("Address map %p\n", map);
+
 	if (!map)
 		exit(EXIT_FAILURE);
 	map->map_size = last->count;
@@ -30,6 +32,7 @@ t_data	*mlx_initializer(void)
 	t_data	*data;
 
 	data = (t_data *) malloc(sizeof(t_data));
+	//printf("Address mlx data %p\n", data);
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "FDF");
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
@@ -44,6 +47,7 @@ t_cam	*cam_initializer(t_data *data)
 	t_cam	*cam;
 
 	cam = (t_cam *) malloc(sizeof(t_cam));
+	//printf("Address cam  %p\n", cam);
 	cam->x_pos = ((WIDTH - M_WIDTH) / 2);
 	cam->y_pos = (HEIGHT / 2);
 	if (((WIDTH - M_WIDTH) / data->map->width / 2) \
@@ -64,6 +68,8 @@ t_draw	*init_draw(t_pixel *p1, t_pixel *p2)
 	t_draw	*data;
 
 	data = (t_draw *)malloc(sizeof(t_draw));
+	//printf("Address draw param %p\n", data);
+
 	if (!data)
 		return (NULL);
 	data->delta.x = abs(p2->x - p1->x);

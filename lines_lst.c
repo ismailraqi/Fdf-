@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:27:56 by iraqi             #+#    #+#             */
-/*   Updated: 2022/04/26 02:35:53 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/14 00:14:43 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ t_lines	*new_line(t_pixel *f_pixel)
 	t_lines	*new_l;
 
 	new_l = (t_lines *) malloc(sizeof(t_lines));
+	printf("Address new line %p\n", new_l);
+
 	if (!new_l)
 		exit(EXIT_FAILURE);
 	new_l->line = f_pixel;
@@ -43,21 +45,48 @@ t_pixel	**lines_to_map(t_lines *lines, int size)
 {
 	t_pixel	**lines_map;
 	t_lines	*curr;
+	t_lines	*next;
 	int		i;
 
-	lines_map = (t_pixel **)malloc(sizeof(t_pixel *) * size);
+	lines_map = (t_pixel **) malloc(sizeof(t_pixel *) * size);
+	printf("Address lines to map param %p\n", lines_map);
 	if (!lines_map)
 		exit(EXIT_FAILURE);
-	lines_map[size] = NULL;
 	curr = lines;
 	i = 0;
 	while (curr)
 	{
 		lines_map[i] = curr->line;
 		i++;
-		curr = curr->next;
+		next = curr->next;
+		free(curr);
+		curr = next;
 	}
 	return (lines_map);
+}
+
+void	lines_clear(t_lines **head)
+{
+	t_lines	*current;
+	t_lines	*next;
+
+	current = *head;
+	while (current)
+	{
+		next = current->next;
+		pixels_clear(&current->line);
+		free(current);
+		current = next;
+	}
+	*head = NULL;
+}
+
+void print_list(t_pixel **pixels, int i)
+{
+	printf("base adress: %p, id == %d\n", *pixels, i);
+	t_pixel *c = *pixels;
+	while (c)
+		c = (printf("%d %d %d [%p]\n", c->x, c->y, c->z, c), c->next);
 }
 
 void	lines_map_clear(t_data *data)
@@ -71,23 +100,12 @@ void	lines_map_clear(t_data *data)
 	while (++i < data->map->height)
 	{
 		pixel = pixels[i];
+		print_list(&pixel, i);
 		if (pixel)
 			pixels_clear(&pixel);
+		// free(pixels[i]);
 	}
+	// pixels_clear(&pixels[i]);
 	free(pixels);
-}
-
-void	lines_clear(t_lines **head)
-{
-	t_lines	*current;
-	t_lines	*next;
-
-	current = *head;
-	while (current)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*head = NULL;
+	data->lines_map = NULL;
 }
