@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 01:14:41 by iraqi             #+#    #+#             */
-/*   Updated: 2022/05/13 23:40:06 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/15 16:37:30 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,10 @@ static	t_get_list	*init_param(char *fname)
 	t_get_list	*param;
 
 	param = (t_get_list *) malloc(sizeof(t_get_list));
-	//printf("Address get list param %p\n", param);
 	param->fd = open(fname, O_RDONLY);
 	if (param->fd < 0)
 		return (NULL);
 	param->line = (char *)malloc(10000);
-	//printf("Address split param line %p\n", param->line);
 	if (!param->line)
 		return (NULL);
 	param->cord.num = 0;

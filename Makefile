@@ -60,4 +60,6 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : clean fclean re linux all
+bonus : all
+
+.PHONY : clean fclean re linux all bonus

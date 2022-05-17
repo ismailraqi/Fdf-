@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 01:57:43 by iraqi             #+#    #+#             */
-/*   Updated: 2022/05/13 23:26:46 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/17 21:43:20 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,6 @@ static	int	file_checker(char *fname)
 	return (1);
 }
 
- 
- int ffd;
- 
 int	main(int ac, char **av)
 {
 	t_data		*data;
@@ -50,13 +47,14 @@ int	main(int ac, char **av)
 
 	last = NULL;
 	if (ac != 2 || !file_checker(av[1]))
-		exit(EXIT_FAILURE);
+		(put_str("Invalid file or file does not have permission"), \
+			put_str("USAGE ./fdf {filename}.fdf"), \
+			exit(EXIT_FAILURE));
 	data = mlx_initializer();
 	list = get_list(av[1], &last);
-	if (!list->lines)
-		exit(EXIT_FAILURE);
+	if (!list->lines || last->count <= 0)
+		(put_str("Invalid MAP"), exit(EXIT_FAILURE));
 	data->map = map_initializer(last);
-	
 	data->cam = cam_initializer(data);
 	data->lines_map = lines_to_map(list->lines, data->map->height + 1);
 	draw(data->lines_map, data);

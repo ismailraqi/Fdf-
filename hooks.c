@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:20:52 by iraqi             #+#    #+#             */
-/*   Updated: 2022/05/13 23:16:22 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/17 21:40:44 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,14 @@ static	void	exit_cleaner(t_data *data)
 int	exit_hook(t_data *data)
 {
 	exit_cleaner(data);
-	pause();
-	exit(0);
+	(put_str("GOOD BYE !"), exit(0));
 }
 
 int	key_hook(int keycode, t_data *data)
 {
 	rotation_hooks(keycode, data);
 	if (keycode == ESC_KEY || keycode == 17)
-	{
-		exit_cleaner(data);
-		exit(0);
-	}
+		exit_hook(data);
 	if (keycode == I_KEY)
 		data->is_parallel = 1;
 	if (keycode == P_KEY)
@@ -73,6 +69,7 @@ int	mouse_hook(int button, int x, int y, void *param)
 {
 	t_data	*data;
 	t_cam	*cam;
+
 	(void)x;
 	(void)y;
 	data = (t_data *)param;

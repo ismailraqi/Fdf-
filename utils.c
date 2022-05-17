@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 00:47:05 by iraqi             #+#    #+#             */
-/*   Updated: 2022/05/12 21:40:58 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/17 19:05:11 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ int	get_hight(t_pixel *pixel, char *str)
 		pixel->z = (i++, 10 * pixel->z + (str[i - 1] - '0'));
 	pixel->z *= t;
 	return (0);
+}
+
+void	put_str(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
+	write(1, "\n", 2);
 }

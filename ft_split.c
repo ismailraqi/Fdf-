@@ -6,7 +6,7 @@
 /*   By: iraqi <iraqi@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 00:08:06 by iraqi             #+#    #+#             */
-/*   Updated: 2022/05/14 00:25:52 by iraqi            ###   ########.fr       */
+/*   Updated: 2022/05/15 17:26:52 by iraqi            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static	t_split	*init_param(void)
 	t_split	*param;
 
 	param = (t_split *) malloc(sizeof(t_split));
-	printf("Address split param %p\n", param);
 	if (!param)
 		return (NULL);
 	param->beg = 0;
@@ -26,7 +25,7 @@ static	t_split	*init_param(void)
 	return (param);
 }
 
-static	void	*find_position(char *str, t_split *param)
+static	t_split	*find_position(char *str, t_split *param)
 {
 	while (str[param->end] == ' ')
 		param->end = (param->beg++, param->end + 1);
@@ -35,11 +34,22 @@ static	void	*find_position(char *str, t_split *param)
 	return (param);
 }
 
+static	void	pixels_filler(t_split *param, t_cord *cord)
+{
+	while (param->beg < cord->x)
+	{
+		param->new[param->beg++] = *(param->tmp);
+		if (param->tmp->x == 0)
+			free(param->tmp);
+		param->tmp = param->tmp->next;
+	}
+}
+
 t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last)
 {
 	t_split	*param;
 	t_pixel	*tmp;
-	
+
 	param = init_param();
 	if (!str)
 		return (NULL);
@@ -53,18 +63,10 @@ t_pixel	*split_delim(char *str, t_cord *cord, t_pixel **last)
 	}
 	param->tmp = param->new;
 	param->new = (t_pixel *)malloc(cord->x * sizeof(t_pixel));
-	printf("Address split param new %p\n", param->new);
 	if (!param->new)
 		return (pixels_clear(&param->new), free(param), NULL);
 	param->beg = 0;
-	while (param->beg < cord->x)
-	{
-		param->new[param->beg++] = *(param->tmp);
-		if (param->tmp->x == 0)
-			free(param->tmp);
-		printf("the one: %p -- %d %d\n", param->tmp, param->tmp->x, param->tmp->y);
-		param->tmp = param->tmp->next;
-	}
+	pixels_filler(param, cord);
 	tmp = param->new;
 	free(param);
 	return (tmp);
